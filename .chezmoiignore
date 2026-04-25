@@ -33,8 +33,37 @@
 # ----- TPM-installed tmux plugins -----
 .tmux/plugins/
 
+# ----- Secrets / credentials (defensive — should never be added) -----
+.config/atuin/key
+.config/atuin/session
+.config/gh/hosts.yml
+.config/github-copilot/
+.config/configstore/
+.ssh/
+.gnupg/
+.aws/credentials
+.docker/config.json
+.npmrc
+.netrc
+
+# ----- Env / dotenv files -----
+**/.env
+**/.env.*
+!**/.env.example
+!**/.env.sample
+
+# ----- Common credential filenames -----
+**/*credentials*
+**/*secret*
+**/*.pem
+**/*.key
+**/*.p12
+**/*.pfx
+
 # ----- README, license, and other repo meta -----
 # (these live in the repo but shouldn't be applied to ~)
 README.md
 LICENSE
+.pre-commit-config.yaml
+.gitignore
 
