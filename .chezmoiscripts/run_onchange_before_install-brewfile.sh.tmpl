@@ -1,0 +1,23 @@
+#!/bin/sh
+# Install Homebrew dependencies from Brewfile.
+# Re-runs whenever Brewfile changes.
+#
+# Brewfile hash: {{ include "Brewfile" | sha256sum }}
+
+set -eu
+
+if ! command -v brew >/dev/null 2>&1; then
+    cat >&2 <<'EOF'
+ERROR: Homebrew is not installed.
+
+Install it first:
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+Then re-run:
+  chezmoi apply
+EOF
+    exit 1
+fi
+
+echo "==> Installing Homebrew packages from Brewfile..."
+brew bundle --file "{{ .chezmoi.sourceDir }}/Brewfile"

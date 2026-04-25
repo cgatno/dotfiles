@@ -64,6 +64,8 @@
 # (these live in the repo but shouldn't be applied to ~)
 README.md
 LICENSE
+Brewfile
+assets
 .pre-commit-config.yaml
 .gitignore
 
