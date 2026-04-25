@@ -8,16 +8,16 @@ Gruvbox throughout, JetBrains Mono everywhere.
 
 ## Stack at a glance
 
-| Layer | Tool | Why |
-|---|---|---|
-| Terminal | [Ghostty](https://ghostty.org) | GPU-accelerated, native macOS, auto light/dark |
-| Shell | [fish](https://fishshell.com) | Sensible defaults, no config gymnastics |
-| Prompt | [Starship](https://starship.rs) | Fast, declarative, themeable |
-| Plugins | [Fisher](https://github.com/jorgebucaran/fisher) | fish plugin manager |
-| Multiplexer | [tmux](https://github.com/tmux/tmux) | Sessions, splits, persistence |
-| Editor | [Neovim](https://neovim.io) | Hand-rolled lean config |
-| Dev tools | [mise](https://mise.jdx.dev) | One tool to version Node, Python, Go, Rust, … |
-| History | [Atuin](https://atuin.sh) | Searchable, syncable shell history |
+| Layer       | Tool                                             | Why                                            |
+| ----------- | ------------------------------------------------ | ---------------------------------------------- |
+| Terminal    | [Ghostty](https://ghostty.org)                   | GPU-accelerated, native macOS, auto light/dark |
+| Shell       | [fish](https://fishshell.com)                    | Sensible defaults, no config gymnastics        |
+| Prompt      | [Starship](https://starship.rs)                  | Fast, declarative, themeable                   |
+| Plugins     | [Fisher](https://github.com/jorgebucaran/fisher) | fish plugin manager                            |
+| Multiplexer | [tmux](https://github.com/tmux/tmux)             | Sessions, splits, persistence                  |
+| Editor      | [Neovim](https://neovim.io)                      | Hand-rolled lean config                        |
+| Dev tools   | [mise](https://mise.jdx.dev)                     | One tool to version Node, Python, Go, Rust, …  |
+| History     | [Atuin](https://atuin.sh)                        | Searchable, syncable shell history             |
 
 Modern CLI replacements wired in via fish + Fisher: `eza`, `zoxide`, `fzf`,
 `bat`, `ripgrep`, `fd`, `git-delta`.
@@ -161,10 +161,10 @@ they hit the database.
 Measured on a MacBook Pro (M2 Pro, 16 GB, macOS 26.4.1) using
 `hyperfine --warmup 3 --runs 50 <cmd>`:
 
-| | Mean ± σ | Range |
-|---|---|---|
-| `fish -i -c exit` | 65.9 ms ± 1.6 ms | 63.2 – 71.2 ms |
-| `nvim --headless +q` (no buffer) | 26.6 ms ± 1.3 ms | 24.2 – 30.2 ms |
+|                                                 | Mean ± σ         | Range          |
+| ----------------------------------------------- | ---------------- | -------------- |
+| `fish -i -c exit`                               | 65.9 ms ± 1.6 ms | 63.2 – 71.2 ms |
+| `nvim --headless +q` (no buffer)                | 26.6 ms ± 1.3 ms | 24.2 – 30.2 ms |
 | `nvim --headless <file> +q` (Treesitter active) | 46.7 ms ± 1.1 ms | 44.1 – 49.8 ms |
 
 Larger files (a few thousand lines, more Treesitter and gitsigns work)
