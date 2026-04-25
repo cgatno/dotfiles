@@ -1,0 +1,48 @@
+# ============================================================
+# Ghostty Configuration
+# ============================================================
+
+# ============================================================
+# Appearance
+# ============================================================
+
+# Theme — auto-switches with macOS system appearance
+theme = light:Gruvbox Light,dark:Gruvbox Dark
+
+# Font — Nerd Font for Starship icons and powerline separators
+font-family = JetBrainsMono Nerd Font
+font-size = 12
+
+background-opacity = 0.95
+background-blur-radius = 20
+
+# ============================================================
+# macOS Integration
+# ============================================================
+
+# Option key acts as Alt (for shell/editor bindings)
+macos-option-as-alt = true
+
+# Integrate tabs into titlebar (saves vertical space, native look)
+macos-titlebar-style = tabs
+
+# ============================================================
+# Quality of Life
+# ============================================================
+
+# Hide mouse cursor while typing
+mouse-hide-while-typing = true
+
+# Restore window state (tabs, splits) across restarts
+window-save-state = always
+
+# Thin bar cursor at the prompt (shell-integration also handles this)
+cursor-style = bar
+
+# ============================================================
+# SSH Integration
+# ============================================================
+
+# Auto-install Ghostty terminfo on remote hosts, and forward TERM info
+shell-integration-features = ssh-terminfo,ssh-env
+

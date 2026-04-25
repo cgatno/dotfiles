@@ -1,0 +1,21 @@
+[tools]
+node = "latest"
+deno = "latest"
+go = "latest"
+dotnet = "latest"
+neovim = "latest"
+r = "latest"
+python = "latest"
+bun = "latest"
+java = "latest"
+rust = "latest"
+erlang = "latest"
+rebar = "latest"
+gleam = "latest"
+chezmoi = "latest"
+
+[env]
+LDFLAGS = "-L/opt/homebrew/lib"
+CPPFLAGS = "-I/opt/homebrew/include"
+PKG_CONFIG_PATH = "/opt/homebrew/lib/pkgconfig"
+

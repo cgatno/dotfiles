@@ -1,0 +1,40 @@
+# ============================================================
+# chezmoi ignore — patterns that should never be managed
+# ============================================================
+
+# ----- Fish auto-managed / Fisher-installed files -----
+# These are regenerated when Fisher installs plugins on a fresh machine
+.config/fish/fish_variables
+.config/fish/conf.d/*
+.config/fish/completions/*
+.config/fish/functions/__*
+.config/fish/functions/_*
+.config/fish/functions/fisher.fish
+.config/fish/functions/bass.fish
+.config/fish/functions/g*.fish
+.config/fish/functions/grt.fish
+.config/fish/functions/glp.fish
+
+# Re-include our hand-written function explicitly
+!.config/fish/functions/devupdate.fish
+
+# ----- macOS noise -----
+.DS_Store
+**/.DS_Store
+
+# ----- Editor / cache noise -----
+.config/nvim/.netrwhist
+.local/share/nvim/
+.cache/
+
+# ----- Atuin history database (private) -----
+.local/share/atuin/
+
+# ----- TPM-installed tmux plugins -----
+.tmux/plugins/
+
+# ----- README, license, and other repo meta -----
+# (these live in the repo but shouldn't be applied to ~)
+README.md
+LICENSE
+
