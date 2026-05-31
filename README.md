@@ -24,6 +24,13 @@ Modern CLI replacements wired in via fish + Fisher: `eza`, `zoxide`, `fzf`,
 
 ## Install
 
+The same repo applies cleanly on both macOS and Linux/WSL — chezmoi
+detects the OS and only runs the relevant bootstrap steps (Homebrew on
+macOS, apt + mise on Linux), and skips macOS-only configs like Ghostty
+elsewhere.
+
+### macOS
+
 Prerequisites:
 
 - macOS
@@ -58,6 +65,45 @@ echo /opt/homebrew/bin/fish | sudo tee -a /etc/shells
 chsh -s /opt/homebrew/bin/fish
 ```
 
+### Linux / WSL
+
+Prerequisites:
+
+- A Debian/Ubuntu base (the bootstrap script uses `apt`)
+- [mise](https://mise.jdx.dev) — `curl https://mise.run | sh` (used to
+  install `starship`, `atuin`, and `gitleaks`, which aren't in apt)
+
+Then the same one command does the rest:
+
+```bash
+sh -c "$(curl -fsLS get.chezmoi.io/lb)" -- init --apply cgatno
+```
+
+On Linux this:
+
+1. Clones this repo into `~/.local/share/chezmoi`
+2. Runs the apt + mise bootstrap
+   ([`run_onchange_before_install-packages-linux.sh.tmpl`](./.chezmoiscripts/run_onchange_before_install-packages-linux.sh.tmpl)) —
+   apt-installs `fish tmux fzf ripgrep bat fd-find zoxide eza git-delta
+   pre-commit`, symlinks `bat`→`batcat` and `fd`→`fdfind` into
+   `~/.local/bin`, and uses mise for `starship`, `atuin`, `gitleaks`
+3. Applies the configs (Ghostty is skipped — on WSL the terminal, e.g.
+   Windows Terminal, lives outside this repo)
+4. Bootstraps Fisher and syncs `fish_plugins`
+5. Clones TPM and installs the tmux plugins
+
+Then set fish as your login shell (apt installs it at `/usr/bin/fish`):
+
+```bash
+echo /usr/bin/fish | sudo tee -a /etc/shells
+chsh -s /usr/bin/fish
+```
+
+> **Note on the JetBrains Mono Nerd Font:** the font cask is macOS-only.
+> On WSL, install [JetBrainsMono Nerd Font](https://www.nerdfonts.com/)
+> on the **Windows** side and point your terminal (e.g. Windows
+> Terminal) at it so Starship's icons and powerline glyphs render.
+
 If you'll be committing to this repo, enable the gitleaks pre-commit
 hook:
 
@@ -68,7 +114,9 @@ cd ~/.local/share/chezmoi && pre-commit install
 ### Manual install (cherry-pick)
 
 If you'd rather install only some pieces, skip the chezmoi one-liner
-and install dependencies à la carte:
+and install dependencies à la carte.
+
+**macOS (Homebrew):**
 
 ```bash
 # Core
@@ -82,6 +130,22 @@ brew install gitleaks pre-commit
 
 # Terminal & font
 brew install --cask ghostty font-jetbrains-mono-nerd-font
+```
+
+**Linux / WSL (apt + mise):**
+
+```bash
+# Core + modern CLI replacements available in apt
+sudo apt install fish tmux fzf ripgrep bat fd-find zoxide eza \
+    git-delta pre-commit
+
+# Ubuntu/Debian name these batcat / fdfind — expose the usual names
+mkdir -p ~/.local/bin
+ln -s "$(command -v batcat)" ~/.local/bin/bat
+ln -s "$(command -v fdfind)" ~/.local/bin/fd
+
+# Not in apt — install with mise (or each tool's official installer)
+mise use -g starship atuin gitleaks neovim chezmoi
 ```
 
 ## Why these choices

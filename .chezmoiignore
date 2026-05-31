@@ -1,6 +1,14 @@
 # ============================================================
 # chezmoi ignore — patterns that should never be managed
+# (this file is always rendered as a chezmoi template)
 # ============================================================
+
+{{- if ne .chezmoi.os "darwin" }}
+# ----- macOS-only apps (skip everywhere else) -----
+# Ghostty is a native macOS terminal; on Linux/WSL the terminal lives
+# outside this repo (e.g. Windows Terminal), so don't manage its config.
+.config/ghostty/**
+{{- end }}
 
 # ----- Fish auto-managed / Fisher-installed files -----
 # These are regenerated when Fisher installs plugins on a fresh machine
