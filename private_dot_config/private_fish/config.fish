@@ -2,6 +2,16 @@
 # Fish Shell Configuration
 # ============================================================
 
+# ============================================================
+# PATH
+# ============================================================
+# Ensure user-local binaries are on PATH *before* the tool inits below.
+# starship, atuin, mise, chezmoi, etc. install into ~/.local/bin. In a
+# login + interactive shell, fish's own ~/.local/bin handling runs only
+# after this file is sourced, so `starship init` (etc.) would otherwise
+# fail with "command not found" at startup. Add it explicitly, up front.
+fish_add_path -g $HOME/.local/bin
+
 # Interactive session setup
 if status is-interactive
     # Disable the default greeting
