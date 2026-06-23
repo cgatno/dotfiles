@@ -13,6 +13,7 @@ erlang = "latest"
 rebar = "latest"
 gleam = "latest"
 chezmoi = "latest"
+uv = "latest"
 
 {{- if eq .chezmoi.os "darwin" }}
 
@@ -24,4 +25,3 @@ LDFLAGS = "-L/opt/homebrew/lib"
 CPPFLAGS = "-I/opt/homebrew/include"
 PKG_CONFIG_PATH = "/opt/homebrew/lib/pkgconfig"
 {{- end }}
-
