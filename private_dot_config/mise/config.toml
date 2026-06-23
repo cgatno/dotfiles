@@ -13,15 +13,10 @@ erlang = "latest"
 rebar = "latest"
 gleam = "latest"
 chezmoi = "latest"
+uv = "latest"
 
-{{- if eq .chezmoi.os "darwin" }}
-
-# Homebrew-rooted build flags so native extensions (Python C-exts, R
-# packages, etc.) find Homebrew's headers and libraries. macOS only —
-# on Linux these libs live on the standard system search paths.
 [env]
 LDFLAGS = "-L/opt/homebrew/lib"
 CPPFLAGS = "-I/opt/homebrew/include"
 PKG_CONFIG_PATH = "/opt/homebrew/lib/pkgconfig"
-{{- end }}
 

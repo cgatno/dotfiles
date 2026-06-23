@@ -2,16 +2,6 @@
 # Fish Shell Configuration
 # ============================================================
 
-# ============================================================
-# PATH
-# ============================================================
-# Ensure user-local binaries are on PATH *before* the tool inits below.
-# starship, atuin, mise, chezmoi, etc. install into ~/.local/bin. In a
-# login + interactive shell, fish's own ~/.local/bin handling runs only
-# after this file is sourced, so `starship init` (etc.) would otherwise
-# fail with "command not found" at startup. Add it explicitly, up front.
-fish_add_path -g $HOME/.local/bin
-
 # Interactive session setup
 if status is-interactive
     # Disable the default greeting
@@ -40,10 +30,13 @@ set -gx HOMEBREW_NO_ENV_HINTS 1
 # bat — use Gruvbox theme
 set -gx BAT_THEME "gruvbox-dark"
 
+# PATH
+set -gx PATH $HOME/.local/bin $PATH
+
 # ============================================================
 # Tool Activation
 # ============================================================
 
 # mise-en-place — version manager for dev tools
-$HOME/.local/bin/mise activate fish | source
+mise_dir=(brew --prefix mise) $mise_dir/bin/mise activate fish | source
 

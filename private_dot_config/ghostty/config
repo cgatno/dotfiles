@@ -13,7 +13,7 @@ theme = light:Gruvbox Light,dark:Gruvbox Dark
 font-family = JetBrainsMono Nerd Font
 font-size = 12
 
-background-opacity = 0.95
+background-opacity = 0.90
 background-blur-radius = 20
 
 # ============================================================
