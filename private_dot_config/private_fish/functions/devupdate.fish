@@ -16,7 +16,11 @@ function devupdate --description "Update system packages, mise, and fisher"
     end
 
     echo "🔧 Updating mise..."
-    mise self-update -y
+    # Only run mise self-update if installed via the self-installer
+    # (Homebrew-installed mise doesn't support self-update)
+    if string match "$HOME/.local/bin/mise" (command -v mise) >/dev/null 2>&1
+        mise self-update -y
+    end
     mise upgrade
 
     echo "🐟 Updating Fisher plugins..."
