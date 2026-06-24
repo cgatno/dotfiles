@@ -4,7 +4,7 @@ function devupdate --description "Update system packages, mise, and fisher"
     if type -q brew
         echo "🍺 Updating Homebrew..."
         brew update
-        brew upgrade
+        brew upgrade -y
         brew cleanup
     else if type -q apt
         echo "📦 Updating apt packages..."
