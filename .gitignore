@@ -1,5 +1,5 @@
 # ============================================================
-# .gitignore — last line of defense against committing secrets
+# .gitignore—last line of defense against committing secrets
 # (chezmoi's own ignore is .chezmoiignore; this one is for git)
 # ============================================================
 

@@ -20,7 +20,7 @@ return {
       },
       -- Disable the panel UI (we're using inline suggestions only)
       panel = { enabled = false },
-      -- Filetypes — disable for prose, enable for code/config
+      -- Filetypes—disable for prose, enable for code/config
       filetypes = {
         markdown = false,       -- disabled for prose
         gitcommit = false,      -- let me write my own commit messages

@@ -1,7 +1,7 @@
 # dotfiles
 
 A working macOS terminal setup, managed with [chezmoi](https://chezmoi.io).
-Lean, fast, cohesive — built deliberately rather than accumulated.
+Lean, fast, cohesive—built deliberately rather than accumulated.
 Gruvbox throughout, JetBrains Mono everywhere.
 
 ![screenshot](assets/screenshot.png)
@@ -24,7 +24,7 @@ Modern CLI replacements wired in via fish + Fisher: `eza`, `zoxide`, `fzf`,
 
 ## Install
 
-The same repo applies cleanly on both macOS and Linux/WSL — chezmoi
+The same repo applies cleanly on both macOS and Linux/WSL—chezmoi
 detects the OS and only runs the relevant bootstrap steps (Homebrew on
 macOS, apt + mise on Linux), and skips macOS-only configs like Ghostty
 elsewhere.
@@ -34,8 +34,8 @@ elsewhere.
 Prerequisites:
 
 - macOS
-- Xcode Command Line Tools — `xcode-select --install`
-- [Homebrew](https://brew.sh) — `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+- Xcode Command Line Tools—`xcode-select --install`
+- [Homebrew](https://brew.sh)—`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
 
 Then one command does the rest:
 
@@ -46,14 +46,14 @@ sh -c "$(curl -fsLS get.chezmoi.io/lb)" -- init --apply cgatno
 That single line:
 
 1. Clones this repo into `~/.local/share/chezmoi`
-2. Runs `brew bundle` — installs everything in [`Brewfile`](./Brewfile)
+2. Runs `brew bundle`—installs everything in [`Brewfile`](./Brewfile)
 3. Applies the configs to your home directory
 4. Bootstraps [Fisher](https://github.com/jorgebucaran/fisher) and syncs `fish_plugins`
 5. Clones [TPM](https://github.com/tmux-plugins/tpm) and installs the tmux plugins from `.tmux.conf`
 
 Steps 2, 4, and 5 are handled by chezmoi
 [`run_onchange_`](https://www.chezmoi.io/reference/source-state-attributes/#run-scripts)
-scripts in [`.chezmoiscripts/`](./.chezmoiscripts) — each is hashed
+scripts in [`.chezmoiscripts/`](./.chezmoiscripts)—each is hashed
 against the file it depends on, so they re-run only when something
 genuinely changes (e.g., a new package added to `Brewfile`, a new
 plugin added to `fish_plugins`).
@@ -70,7 +70,7 @@ chsh -s /opt/homebrew/bin/fish
 Prerequisites:
 
 - A Debian/Ubuntu base (the bootstrap script uses `apt`)
-- [mise](https://mise.jdx.dev) — `curl https://mise.run | sh` (used to
+- [mise](https://mise.jdx.dev)—`curl https://mise.run | sh` (used to
   install `starship`, `atuin`, and `gitleaks`, which aren't in apt)
 
 Then the same one command does the rest:
@@ -83,11 +83,11 @@ On Linux this:
 
 1. Clones this repo into `~/.local/share/chezmoi`
 2. Runs the apt + mise bootstrap
-   ([`run_onchange_before_install-packages-linux.sh.tmpl`](./.chezmoiscripts/run_onchange_before_install-packages-linux.sh.tmpl)) —
-   apt-installs `fish tmux fzf ripgrep bat fd-find zoxide eza git-delta
+   ([`run_onchange_before_install-packages-linux.sh.tmpl`](./.chezmoiscripts/run_onchange_before_install-packages-linux.sh.tmpl))—apt-installs
+   `fish tmux fzf ripgrep bat fd-find zoxide eza git-delta
    pre-commit`, symlinks `bat`→`batcat` and `fd`→`fdfind` into
    `~/.local/bin`, and uses mise for `starship`, `atuin`, `gitleaks`
-3. Applies the configs (Ghostty is skipped — on WSL the terminal, e.g.
+3. Applies the configs (Ghostty is skipped—on WSL the terminal, e.g.
    Windows Terminal, lives outside this repo)
 4. Bootstraps Fisher and syncs `fish_plugins`
 5. Clones TPM and installs the tmux plugins
@@ -139,25 +139,25 @@ brew install --cask ghostty font-jetbrains-mono-nerd-font
 sudo apt install fish tmux fzf ripgrep bat fd-find zoxide eza \
     git-delta pre-commit
 
-# Ubuntu/Debian name these batcat / fdfind — expose the usual names
+# Ubuntu/Debian name these batcat / fdfind—expose the usual names
 mkdir -p ~/.local/bin
 ln -s "$(command -v batcat)" ~/.local/bin/bat
 ln -s "$(command -v fdfind)" ~/.local/bin/fd
 
-# Not in apt — install with mise (or each tool's official installer)
+# Not in apt—install with mise (or each tool's official installer)
 mise use -g starship atuin gitleaks neovim chezmoi
 ```
 
 ## Why these choices
 
-### Terminal — Ghostty
+### Terminal—Ghostty
 
 Native macOS app, GPU-rendered, fast. The config auto-switches between
 Gruvbox Light and Dark based on system appearance, and forwards
 `ssh-terminfo` / `ssh-env` so remote sessions render correctly without
 manually installing terminfo on every host.
 
-### Shell — fish + Fisher
+### Shell—fish + Fisher
 
 Fish provides autosuggestions, syntax highlighting, and abbreviations as
 built-in features. Fisher manages the plugins that extend it:
@@ -165,39 +165,41 @@ built-in features. Fisher manages the plugins that extend it:
 `plugin-git` for git abbreviations, and `bass` for sourcing bash scripts
 when needed.
 
-### Prompt — Starship
+### Prompt—Starship
 
 A custom multi-segment prompt with the Gruvbox palette: OS icon →
 username → directory → git branch & status → language version →
 docker context → time. One config file, no shell coupling.
 
-### Multiplexer — tmux
+### Multiplexer—tmux
 
 `Ctrl+Space` as prefix (closer to home row than the default `Ctrl+b`),
 intuitive `|` and `-` splits that inherit cwd, 50k-line scrollback,
 auto-restore via `tmux-resurrect` + `tmux-continuum`, and seamless
 nvim ↔ tmux pane navigation via `vim-tmux-navigator`.
 
-### Editor — Neovim
+### Editor—Neovim
 
 Hand-rolled config, bootstrapped with `lazy.nvim`. One file per plugin
 under `lua/plugins/` so changes are surgical.
 
-- **Treesitter** for syntax (Lua, Python, fish, bash, markdown, json,
-  yaml, toml, vim, gitcommit, gitignore, …)
+- **Treesitter** for syntax (bash, fish, Lua, markdown, json, yaml,
+  toml, vim, gitcommit, gitignore, …; others auto-install on first use)
 - **Copilot** for inline ghost-text suggestions (Tab to accept)
 - **fzf-lua** for files, grep, buffers, keymaps
 - **Oil** for buffer-as-file-explorer (`-` to ascend a directory)
 - **Gitsigns** for hunks in the sign column + actions
+- **render-markdown** for in-buffer markdown rendering (headings, code
+  blocks, bullets, checkboxes)
 - **Lualine** for the status line, **Gruvbox** for the colors
 
-### Dev tools — mise
+### Dev tools—mise
 
 One tool, one TOML file, every language runtime. Replaces `nvm`,
 `pyenv`, `rbenv`, `goenv`, `rustup`, etc. Per-project versions when
 needed; sane global defaults via `mise/config.toml`.
 
-### History — Atuin
+### History—Atuin
 
 Searchable shell history with vim-mode keybindings, compact UI, and
 sync v2 enabled (encrypted, end-to-end). Built-in secrets filter
@@ -241,23 +243,26 @@ push the upper bound higher; the numbers above are for opening
 .
 ├── .chezmoiignore                      # what chezmoi shouldn't apply
 ├── .chezmoiscripts/                    # run_onchange_ bootstrap scripts
-│   ├── run_onchange_before_install-brewfile.sh.tmpl
+│   ├── run_onchange_before_install-brewfile.sh.tmpl        # macOS: brew bundle
+│   ├── run_onchange_before_install-packages-linux.sh.tmpl  # Linux: apt + mise
 │   ├── run_onchange_after_install-fish-plugins.sh.tmpl
 │   └── run_onchange_after_install-tmux-plugins.sh.tmpl
 ├── .gitignore                          # repo-level secret-shaped patterns
 ├── .pre-commit-config.yaml             # gitleaks hook
 ├── Brewfile                            # Homebrew dependencies
-├── dot_gitconfig                       # → ~/.gitconfig
+├── dot_gitconfig.tmpl                  # → ~/.gitconfig  (templated per OS)
 ├── dot_tmux.conf                       # → ~/.tmux.conf
 └── private_dot_config/                 # → ~/.config/  (chmod 700)
     ├── ghostty/config
-    ├── mise/config.toml
+    ├── mise/config.toml.tmpl
     ├── nvim/
     │   ├── init.lua
+    │   ├── lazy-lock.json              # pinned plugin versions
     │   └── lua/
     │       ├── config/                 # options, keymaps, lazy bootstrap
     │       └── plugins/                # one file per plugin
     ├── private_atuin/                  # → ~/.config/atuin/  (chmod 700)
+    │   └── private_config.toml
     ├── private_fish/                   # → ~/.config/fish/   (chmod 700)
     │   ├── config.fish
     │   ├── fish_plugins
@@ -265,6 +270,6 @@ push the upper bound higher; the numbers above are for opening
     └── starship.toml
 ```
 
-The `dot_` and `private_` prefixes are
-[chezmoi attributes](https://www.chezmoi.io/reference/source-state-attributes/)
-— `dot_` becomes a leading `.`, `private_` enforces `chmod 0700`/`0600`.
+The `dot_` and `private_` prefixes are [chezmoi
+attributes](https://www.chezmoi.io/reference/source-state-attributes/)—`dot_`
+becomes a leading `.`, `private_` enforces `chmod 0700`/`0600`.

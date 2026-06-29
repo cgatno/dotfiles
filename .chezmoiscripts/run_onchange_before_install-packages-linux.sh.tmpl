@@ -1,6 +1,6 @@
 {{- if eq .chezmoi.os "linux" -}}
 #!/bin/sh
-# Install CLI dependencies on Linux/WSL — the apt + binaries counterpart
+# Install CLI dependencies on Linux/WSL—the apt + binaries counterpart
 # to the macOS Brewfile. Re-runs whenever Brewfile changes, so the two
 # stay conceptually in sync.
 #
@@ -57,20 +57,20 @@ case "$(uname -m)" in
     *) atuin_arch=""; gl_arch=""; echo "Unsupported arch $(uname -m); skipping starship/atuin/gitleaks." >&2 ;;
 esac
 
-# starship — official installer ships a prebuilt binary.
+# starship—official installer ships a prebuilt binary.
 if ! command -v starship >/dev/null 2>&1; then
     echo "==> Installing starship..."
     curl -sS https://starship.rs/install.sh | sh -s -- -y -b "$LOCAL_BIN"
 fi
 
-# atuin — versionless 'latest' release asset.
+# atuin—versionless 'latest' release asset.
 if [ -n "$atuin_arch" ] && ! command -v atuin >/dev/null 2>&1; then
     echo "==> Installing atuin..."
     curl -fsSL "https://github.com/atuinsh/atuin/releases/latest/download/atuin-${atuin_arch}-unknown-linux-gnu.tar.gz" \
         | tar -xz --strip-components=1 --wildcards -C "$LOCAL_BIN" '*/atuin'
 fi
 
-# gitleaks — release assets are version-stamped, so resolve latest first.
+# gitleaks—release assets are version-stamped, so resolve latest first.
 # Only needed for the pre-commit hook when committing to this repo.
 if [ -n "$gl_arch" ] && ! command -v gitleaks >/dev/null 2>&1; then
     echo "==> Installing gitleaks..."

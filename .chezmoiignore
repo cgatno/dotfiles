@@ -1,5 +1,5 @@
 # ============================================================
-# chezmoi ignore — patterns that should never be managed
+# chezmoi ignore—patterns that should never be managed
 # (this file is always rendered as a chezmoi template)
 # ============================================================
 
@@ -41,7 +41,7 @@
 # ----- TPM-installed tmux plugins -----
 .tmux/plugins/
 
-# ----- Secrets / credentials (defensive — should never be added) -----
+# ----- Secrets / credentials (defensive—should never be added) -----
 .config/atuin/key
 .config/atuin/session
 .config/gh/hosts.yml
@@ -70,7 +70,7 @@
 
 # ----- README, license, and other repo meta -----
 # (these live in the repo but shouldn't be applied to ~)
-README.md
+readme.md
 LICENSE
 Brewfile
 assets

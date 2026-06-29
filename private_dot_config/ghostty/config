@@ -6,10 +6,10 @@
 # Appearance
 # ============================================================
 
-# Theme — auto-switches with macOS system appearance
+# Theme—auto-switches with macOS system appearance
 theme = light:Gruvbox Light,dark:Gruvbox Dark
 
-# Font — Nerd Font for Starship icons and powerline separators
+# Font—Nerd Font for Starship icons and powerline separators
 font-family = JetBrainsMono Nerd Font
 font-size = 12
 

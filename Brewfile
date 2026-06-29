@@ -1,4 +1,4 @@
-# Brewfile — Homebrew dependencies for cgatno/dotfiles
+# Brewfile—Homebrew dependencies for cgatno/dotfiles
 # Install everything with: brew bundle
 
 # Configuration management
