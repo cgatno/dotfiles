@@ -21,7 +21,7 @@ background-blur-radius = 20
 # ============================================================
 
 # Option key acts as Alt (for shell/editor bindings)
-macos-option-as-alt = true
+macos-option-as-alt = left
 
 # Integrate tabs into titlebar (saves vertical space, native look)
 macos-titlebar-style = tabs
