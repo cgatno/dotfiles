@@ -22,5 +22,7 @@ uv = "latest"
 [env]
 LDFLAGS = "-L/opt/homebrew/lib"
 CPPFLAGS = "-I/opt/homebrew/include"
-PKG_CONFIG_PATH = "/opt/homebrew/lib/pkgconfig"
+PKG_CONFIG_PATH = "/opt/homebrew/lib/pkgconfig:/opt/homebrew/opt/cairo/lib/pkgconfig"
+CONFIGURE_ARGS = "--with-cairo --enable-R-shlib"
+R_EXTRA_CONFIGURE_OPTIONS = "--with-cairo --enable-R-shlib"
 {{- end }}
