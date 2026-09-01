@@ -4,7 +4,6 @@ deno = "latest"
 go = "latest"
 dotnet = "latest"
 neovim = "latest"
-r = "latest"
 python = "latest"
 bun = "latest"
 java = "latest"
@@ -14,9 +13,9 @@ rebar = "latest"
 gleam = "latest"
 chezmoi = "latest"
 uv = "latest"
+"asdf:mise-plugins/mise-r" = "latest"
 
 {{- if eq .chezmoi.os "darwin" }}
-
 # Homebrew-rooted build flags so native extensions (Python C-exts, R
 # packages, etc.) find Homebrew's headers and libraries. macOS
 # only—on Linux these libs live on the standard system search paths.
