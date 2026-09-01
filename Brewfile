@@ -9,6 +9,9 @@ brew "cairo"
 brew "pcre2"
 brew "pkg-config"
 
+# GitHub CLI
+brew "gh"
+
 # Configuration management
 brew "chezmoi"
 
