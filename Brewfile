@@ -3,6 +3,11 @@
 
 # Build Toolchain and Dependencies
 brew "gcc"
+brew "xz"
+brew "libxt"
+brew "cairo"
+brew "pcre2"
+brew "pkg-config"
 
 # Configuration management
 brew "chezmoi"
