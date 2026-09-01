@@ -1,6 +1,9 @@
 # Brewfile—Homebrew dependencies for cgatno/dotfiles
 # Install everything with: brew bundle
 
+# Build Toolchain and Dependencies
+brew "gcc"
+
 # Configuration management
 brew "chezmoi"
 
