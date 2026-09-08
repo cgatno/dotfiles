@@ -26,10 +26,16 @@ function devupdate --description "Update system packages, mise, and fisher"
     echo "🐟 Updating Fisher plugins..."
     fisher update
 
-    # Optional: only run if the command exists
+    # Optional: only run if the Claude CLI is available
     if type -q claude
         echo "🤖 Updating Claude CLI..."
         claude update
+    end
+
+    # Optional: only run if the Codex CLI is available
+    if type -q codex
+        echo "🤖 Updating Codex CLI..."
+        codex update
     end
 
     # Optional: only run if neovim is available
