@@ -42,4 +42,5 @@ brew "pre-commit"
 
 # GUI & fonts
 cask "ghostty"
+cask "zed"     # heavier editor—LSP, refactors, multi-file work
 cask "font-jetbrains-mono-nerd-font"

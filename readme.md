@@ -16,6 +16,7 @@ Gruvbox throughout, JetBrains Mono everywhere.
 | Plugins     | [Fisher](https://github.com/jorgebucaran/fisher) | fish plugin manager                            |
 | Multiplexer | [tmux](https://github.com/tmux/tmux)             | Sessions, splits, persistence                  |
 | Editor      | [Neovim](https://neovim.io)                      | Hand-rolled lean config                        |
+| GUI editor  | [Zed](https://zed.dev)                           | LSP + refactors when nvim is the wrong tool    |
 | Dev tools   | [mise](https://mise.jdx.dev)                     | One tool to version Node, Python, Go, Rust, …  |
 | History     | [Atuin](https://atuin.sh)                        | Searchable, syncable shell history             |
 
@@ -129,7 +130,7 @@ brew install eza zoxide fzf bat ripgrep fd git-delta
 brew install gitleaks pre-commit
 
 # Terminal & font
-brew install --cask ghostty font-jetbrains-mono-nerd-font
+brew install --cask ghostty zed font-jetbrains-mono-nerd-font
 ```
 
 **Linux / WSL (apt + mise):**
@@ -193,6 +194,29 @@ under `lua/plugins/` so changes are surgical.
   blocks, bullets, checkboxes)
 - **Lualine** for the status line, **Gruvbox** for the colors
 
+### GUI editor—Zed
+
+The deliberate other half of the Neovim config. Neovim stays lean
+because Zed covers what it skips: real LSP, project-wide rename,
+multi-file refactors, and a debugger UI. Reaching for Zed is cheaper
+than growing nvim a `mason` + `lspconfig` + `cmp` stack it only needs
+occasionally.
+
+Configured to match everything else rather than to be a second home:
+Gruvbox Hard following system appearance, JetBrains Mono in the
+terminal, panels docked right so the editing surface stays left-aligned
+like a tmux pane. Copilot provides edit predictions—the same inline
+completion model as nvim—with a local Ollama model parked in the config
+as an offline alternative.
+
+One caveat worth knowing: **Zed rewrites `settings.json` itself** when
+you change settings through the UI, so it drifts from the source state
+in a way the other configs here don't. After changing a setting in-app:
+
+```bash
+chezmoi re-add ~/.config/zed/settings.json
+```
+
 ### Dev tools—mise
 
 One tool, one TOML file, every language runtime. Replaces `nvm`,
@@ -211,8 +235,8 @@ they hit the database.
 - **No LSP / autocomplete plugins in Neovim.** Treesitter and Copilot
   cover the editing this config is meant for. Adding `mason` +
   `lspconfig` + a completion engine would roughly double the plugin
-  count for marginal value at this scale; reach for a heavier editor
-  when deeper static analysis is genuinely needed.
+  count for marginal value at this scale; Zed is the heavier editor
+  for when deeper static analysis is genuinely needed.
 - **No AI in nvim beyond Copilot inline.** No Avante, no
   CodeCompanion, no ChatGPT plugins. Conversational AI lives in a
   dedicated tool, not the editor.
@@ -267,7 +291,9 @@ push the upper bound higher; the numbers above are for opening
     │   ├── config.fish
     │   ├── fish_plugins
     │   └── functions/devupdate.fish
-    └── starship.toml
+    ├── starship.toml
+    └── zed/
+        └── private_settings.json       # → ~/.config/zed/settings.json (0600)
 ```
 
 The `dot_` and `private_` prefixes are [chezmoi

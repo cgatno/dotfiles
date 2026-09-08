@@ -26,6 +26,17 @@
 # Re-include our hand-written function explicitly
 !.config/fish/functions/devupdate.fish
 
+# ----- Zed auto-managed state -----
+# Only settings.json is hand-written; Zed owns everything else in this
+# directory (agent threads, the LMDB prompt library, downloaded themes).
+.config/zed/conversations/**
+.config/zed/prompts/**
+.config/zed/themes/**
+
+# Zed writes {settings,keymap}_backup.json itself whenever it migrates a
+# deprecated key—a stale copy of the real config, never worth committing.
+.config/zed/*_backup.json
+
 # ----- macOS noise -----
 .DS_Store
 **/.DS_Store
@@ -76,4 +87,3 @@ Brewfile
 assets
 .pre-commit-config.yaml
 .gitignore
-
