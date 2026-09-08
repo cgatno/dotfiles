@@ -194,6 +194,20 @@ under `lua/plugins/` so changes are surgical.
   blocks, bullets, checkboxes)
 - **Lualine** for the status line, **Gruvbox** for the colors
 
+`lazy-lock.json` carries the `create_` attribute, so chezmoi seeds it on
+a fresh machine and then never touches it again—`lazy.nvim` owns the
+file from that point on. Without this, every `:Lazy update` showed up as
+drift in `chezmoi diff` forever. The committed pins are a *bootstrap*
+baseline, not a mirror of what's installed; refresh them deliberately
+when a plugin set is worth freezing:
+
+```bash
+chezmoi add --force ~/.config/nvim/lazy-lock.json   # --force strips create_
+chezmoi chattr +create ~/.config/nvim/lazy-lock.json # put it back
+```
+
+(`chezmoi re-add` won't work here—it skips `create_` files by design.)
+
 ### GUI editor—Zed
 
 The deliberate other half of the Neovim config. Neovim stays lean
@@ -281,7 +295,7 @@ push the upper bound higher; the numbers above are for opening
     ├── mise/config.toml.tmpl
     ├── nvim/
     │   ├── init.lua
-    │   ├── lazy-lock.json              # pinned plugin versions
+    │   ├── create_lazy-lock.json       # bootstrap plugin pins (create_)
     │   └── lua/
     │       ├── config/                 # options, keymaps, lazy bootstrap
     │       └── plugins/                # one file per plugin
