@@ -39,6 +39,9 @@ window-save-state = always
 # Thin bar cursor at the prompt (shell-integration also handles this)
 cursor-style = bar
 
+# New windows should default to $HOME
+window-inherit-working-directory = false
+
 # ============================================================
 # SSH Integration
 # ============================================================
