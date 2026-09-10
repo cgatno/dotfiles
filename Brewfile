@@ -12,6 +12,10 @@ brew "pkg-config"
 # GitHub CLI
 brew "gh"
 
+# AWS CLI
+brew "awscli"
+cask "session-manager-plugin"
+
 # Configuration management
 brew "chezmoi"
 
