@@ -21,6 +21,9 @@
 
 [diff]
 	colorMoved = default
+
+[pull]
+	rebase = false
 {{- if eq .chezmoi.os "linux" }}
 
 # On Linux/WSL, authenticate git over HTTPS through the GitHub CLI.
