@@ -16,6 +16,9 @@ brew "gh"
 brew "awscli"
 cask "session-manager-plugin"
 
+# Google Cloud CLI
+cask "gcloud-cli"
+
 # Configuration management
 brew "chezmoi"
 
