@@ -38,6 +38,12 @@ function devupdate --description "Update system packages, mise, and fisher"
         codex update
     end
 
+    # Optional: only run if the Google Cloud CLI is available
+    if type -q gcloud
+        echo "☁️ Updating Google Cloud CLI..."
+        gcloud --quiet components update
+    end
+
     # Optional: only run if neovim is available
     if type -q nvim
         echo "📝 Updating lazy.nvim..."
