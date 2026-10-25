@@ -33,6 +33,7 @@ brew "atuin"
 # Editor & dev tooling
 brew "neovim"
 brew "mise"
+brew "watch"
 
 # Modern CLI replacements
 brew "eza"        # ls
