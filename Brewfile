@@ -19,6 +19,9 @@ cask "session-manager-plugin"
 # Google Cloud CLI
 cask "gcloud-cli"
 
+# HuggingFace CLI
+brew "hf"
+
 # Configuration management
 brew "chezmoi"
 
