@@ -112,6 +112,27 @@ hook:
 cd ~/.local/share/chezmoi && pre-commit install
 ```
 
+### Git email per machine
+
+During `chezmoi init`, enter the Git email to use on this machine. Press
+Enter to accept `hello@christiangaetano.com`, or enter a different address
+(for example, `cgaetano@edisonscientific.com` on a work machine).
+The answer is saved as `data.gitEmail` in the local chezmoi configuration;
+subsequent runs reuse it without prompting.
+
+On an existing installation, after pulling this change, initialize the
+saved email before applying the Git config:
+
+```bash
+chezmoi init
+chezmoi diff ~/.gitconfig
+chezmoi apply ~/.gitconfig
+```
+
+To choose a different email later, run `chezmoi init --prompt`, then preview
+and apply the Git config again. Repository-local Git email settings still
+take precedence over this global default.
+
 ### Manual install (cherry-pick)
 
 If you'd rather install only some pieces, skip the chezmoi one-liner
@@ -279,6 +300,7 @@ push the upper bound higher; the numbers above are for opening
 
 ```
 .
+├── .chezmoi.toml.tmpl                  # prompts for machine-local Git email
 ├── .chezmoiignore                      # what chezmoi shouldn't apply
 ├── .chezmoiscripts/                    # run_onchange_ bootstrap scripts
 │   ├── run_onchange_before_install-brewfile.sh.tmpl        # macOS: brew bundle
@@ -288,7 +310,7 @@ push the upper bound higher; the numbers above are for opening
 ├── .gitignore                          # repo-level secret-shaped patterns
 ├── .pre-commit-config.yaml             # gitleaks hook
 ├── Brewfile                            # Homebrew dependencies
-├── dot_gitconfig.tmpl                  # → ~/.gitconfig  (templated per OS)
+├── dot_gitconfig.tmpl                  # → ~/.gitconfig  (per-machine email and OS settings)
 ├── dot_tmux.conf                       # → ~/.tmux.conf
 └── private_dot_config/                 # → ~/.config/  (chmod 700)
     ├── ghostty/config
